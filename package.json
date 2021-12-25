@@ -23,7 +23,8 @@
     "homepage": "https://github.com/thasup/react-ecommerce#readme",
     "dependencies": {
         "dotenv": "^10.0.0",
-        "express": "^4.17.2"
+        "express": "^4.17.2",
+        "mongoose": "^6.1.3"
     },
     "devDependencies": {
         "concurrently": "^6.5.1"
