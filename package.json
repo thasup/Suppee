@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/thasup/react-ecommerce#readme",
     "dependencies": {
+        "dotenv": "^10.0.0",
         "express": "^4.17.2"
     },
     "devDependencies": {
