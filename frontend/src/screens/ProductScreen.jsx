@@ -98,6 +98,7 @@ const ProductScreen = () => {
                                             <Col>Qty</Col>
                                             <Col>
                                                 <Form.Control
+                                                    className="selectForm"
                                                     as="select"
                                                     value={qty}
                                                     onChange={(e) =>
