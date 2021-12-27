@@ -10,7 +10,7 @@ const HomeScreen = () => {
     const dispatch = useDispatch();
 
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    const { error, products } = productList;
 
     useEffect(() => {
         dispatch(listProducts());
@@ -19,7 +19,7 @@ const HomeScreen = () => {
     return (
         <>
             <h1>Latest Products</h1>
-            {loading ? (
+            {products.length === 0 ? (
                 <Loader />
             ) : error ? (
                 <Message variant="danger">{error}</Message>
