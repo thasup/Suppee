@@ -18,7 +18,7 @@ const CartScreen = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const productId = match.id;
-
+    console.log(location);
     const qty = new URLSearchParams(location.search).get("qty");
 
     const dispatch = useDispatch();
