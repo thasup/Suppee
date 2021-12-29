@@ -40,9 +40,13 @@ const Header = () => {
                                             Profile
                                         </NavDropdown.Item>
                                     </Nav.Link>
-                                    <NavDropdown.Item onClick={logoutHandler}>
-                                        Logout
-                                    </NavDropdown.Item>
+                                    <Nav.Link>
+                                        <NavDropdown.Item
+                                            onClick={logoutHandler}
+                                        >
+                                            Logout
+                                        </NavDropdown.Item>
+                                    </Nav.Link>
                                 </NavDropdown>
                             ) : (
                                 <Nav.Link onClick={() => navigate("/login")}>
