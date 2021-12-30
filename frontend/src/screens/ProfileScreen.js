@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import { myListOrders } from "../actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const ProfileScreen = () => {
@@ -26,12 +28,16 @@ const ProfileScreen = () => {
     const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
     const { success } = userUpdateProfile;
 
+    const orderMyList = useSelector((state) => state.orderMyList);
+    const { loading: loadingOrders, error: errorOrders, orders } = orderMyList;
+
     useEffect(() => {
         if (!userInfo) {
             navigate("/login");
         } else {
             if (!user || !user.name) {
                 dispatch(getUserDetails("profile"));
+                dispatch(myListOrders());
             } else if (success) {
                 setTimeout(() => {
                     dispatch({ type: USER_UPDATE_PROFILE_RESET });
@@ -115,6 +121,92 @@ const ProfileScreen = () => {
             </Col>
             <Col md={9}>
                 <h2>My Order</h2>
+                {loadingOrders ? (
+                    <Loader />
+                ) : errorOrders ? (
+                    <Message variant="danger">{errorOrders}</Message>
+                ) : (
+                    <Table
+                        striped
+                        bordered
+                        hover
+                        responsive
+                        className="table-sm"
+                    >
+                        <thead>
+                            <tr>
+                                <th>ORDER ID</th>
+                                <th>DATE</th>
+                                <th>TOTAL</th>
+                                <th>PAID</th>
+                                <th>DELIVERED</th>
+                                <th>DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((order) => (
+                                <tr key={order._id}>
+                                    <td>{order._id}</td>
+                                    <td>{order.createdAt.substring(0, 10)}</td>
+                                    <td>$ {order.totalPrice}</td>
+                                    <td>
+                                        {order.isPaid ? (
+                                            <p>
+                                                <i
+                                                    className="fas fa-check"
+                                                    style={{ color: "green" }}
+                                                ></i>{" "}
+                                                {order.paidAt.substring(0, 10)}
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                <i
+                                                    className="fas fa-times"
+                                                    style={{ color: "red" }}
+                                                ></i>{" "}
+                                                Not Paid
+                                            </p>
+                                        )}
+                                    </td>
+                                    <td>
+                                        {order.isDelivered ? (
+                                            <p>
+                                                <i
+                                                    className="fas fa-check"
+                                                    style={{ color: "green" }}
+                                                ></i>{" "}
+                                                {order.deliveredAt.substring(
+                                                    0,
+                                                    10
+                                                )}
+                                            </p>
+                                        ) : (
+                                            <p>
+                                                <i
+                                                    className="fas fa-times"
+                                                    style={{ color: "red" }}
+                                                ></i>{" "}
+                                                Not Delivered
+                                            </p>
+                                        )}
+                                    </td>
+                                    <td>
+                                        <LinkContainer
+                                            to={`/order/${order._id}`}
+                                        >
+                                            <Button
+                                                className="btn-sm"
+                                                variant="light"
+                                            >
+                                                Details
+                                            </Button>
+                                        </LinkContainer>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                )}
             </Col>
         </Row>
     );
