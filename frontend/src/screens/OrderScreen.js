@@ -1,24 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { PayPalButton } from "react-paypal-button-v2";
 import { Link, useParams } from "react-router-dom";
-import { Button, Col, ListGroup, Row, Image, Card } from "react-bootstrap";
+import { Col, ListGroup, Row, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getOrderDetails } from "../actions/orderActions";
+import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderScreen = () => {
     const dispatch = useDispatch();
     const match = useParams();
     const orderId = match.id;
 
+    const [sdkReady, setSdkReady] = useState(false);
+
     const orderDetails = useSelector((state) => state.orderDetails);
     const { order, loading, error } = orderDetails;
 
+    const orderPay = useSelector((state) => state.orderPay);
+    const { loading: loadingPay, success: successPay } = orderPay;
+
     useEffect(() => {
-        if (!order || order._id !== orderId) {
+        const addPayPalScript = async () => {
+            const { data: clientId } = await axios.get("/api/config/paypal");
+            const script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+            script.async = true;
+            script.onload = () => {
+                setSdkReady(true);
+            };
+            document.body.appendChild(script);
+        };
+
+        // Check if customer has paid the order, then
+        if (!order || successPay || order._id !== orderId) {
+            dispatch({ type: ORDER_PAY_RESET });
             dispatch(getOrderDetails(orderId));
+            // Check if customer hasn't paid the order, then
+        } else if (order.isPaid === false) {
+            // Check if the page hasn't loaded with paypal, then
+            if (!window.paypal) {
+                // just add the paypal script (and sdk ready)
+                addPayPalScript();
+            } else {
+                // if page has loaded with paypal, then just set the sdk ready
+                setSdkReady(true);
+            }
         }
-    }, [dispatch, order, orderId]);
+    }, [dispatch, successPay, orderId, order]);
+
+    const successPaymentHandler = (paymentResult) => {
+        console.log(paymentResult);
+        dispatch(payOrder(orderId, paymentResult));
+    };
 
     return loading ? (
         <Loader />
@@ -146,16 +183,19 @@ const OrderScreen = () => {
                                 </Row>
                             </ListGroup.Item>
 
-                            {/* <ListGroup.Item>
-                                <Button
-                                    type="button"
-                                    className="btn-block"
-                                    disabled={cart.cartItems === 0}
-                                    onClick={placeOrderHandler}
-                                >
-                                    Place Order
-                                </Button>
-                            </ListGroup.Item> */}
+                            {!order.isPaid && (
+                                <ListGroup.Item>
+                                    {loadingPay && <Loader />}
+                                    {!sdkReady ? (
+                                        <Loader />
+                                    ) : (
+                                        <PayPalButton
+                                            amount={order.totalPrice}
+                                            onSuccess={successPaymentHandler}
+                                        />
+                                    )}
+                                </ListGroup.Item>
+                            )}
                         </ListGroup>
                     </Card>
                 </Col>
