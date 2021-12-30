@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Col, ListGroup, Row, Image, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
-// import { saveShippingAddress } from "../actions/cartActions";
+import { createOrder } from "../actions/orderActions";
 
 const PlaceOrderScreen = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const cart = useSelector((state) => state.cart);
 
     // Calculate prices
@@ -19,8 +22,26 @@ const PlaceOrderScreen = () => {
     const taxPrice = 0.15 * itemsPrice;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { order, success, error } = orderCreate;
+
+    useEffect(() => {
+        if (success) {
+            navigate(`/order/${order._id}`);
+        }
+    }, [navigate, success, order]);
+
     const placeOrderHandler = () => {
-        console.log("order submited");
+        dispatch(
+            createOrder({
+                orderItems: cart.cartItems,
+                shippingAddress: cart.shippingAddress,
+                paymentMethod: cart.paymentMethod,
+                shippingPrice: cart.shippingPrice,
+                taxPrice: cart.taxPrice,
+                totalPrice: cart.totalPrice,
+            })
+        );
     };
 
     return (
@@ -118,6 +139,11 @@ const PlaceOrderScreen = () => {
                                 </Row>
                             </ListGroup.Item>
 
+                            <ListGroup.Item>
+                                {error && (
+                                    <Message variant="danger">{error}</Message>
+                                )}
+                            </ListGroup.Item>
                             <ListGroup.Item>
                                 <Button
                                     type="button"
