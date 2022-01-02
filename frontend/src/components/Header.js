@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const userLogin = useSelector((state) => state.userLogin);
@@ -20,15 +18,16 @@ const Header = () => {
         <header>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
-                    <Navbar.Brand onClick={() => navigate("/")}>
-                        Suppee
-                    </Navbar.Brand>
+                    <Navbar.Brand href="/">Suppee</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link onClick={() => navigate("/cart")}>
-                                <i className="fas fa-shopping-cart"></i> Cart
-                            </Nav.Link>
+                            <LinkContainer to="/cart">
+                                <Nav.Link>
+                                    <i className="fas fa-shopping-cart"></i>{" "}
+                                    Cart
+                                </Nav.Link>
+                            </LinkContainer>
                             {userInfo ? (
                                 <NavDropdown
                                     title={userInfo.name}
@@ -39,18 +38,16 @@ const Header = () => {
                                             Profile
                                         </NavDropdown.Item>
                                     </LinkContainer>
-                                    <LinkContainer>
-                                        <NavDropdown.Item
-                                            onClick={logoutHandler}
-                                        >
-                                            Logout
-                                        </NavDropdown.Item>
-                                    </LinkContainer>
+                                    <NavDropdown.Item onClick={logoutHandler}>
+                                        Logout
+                                    </NavDropdown.Item>
                                 </NavDropdown>
                             ) : (
-                                <Nav.Link onClick={() => navigate("/login")}>
-                                    <i className="fas fa-user"></i> Sign In
-                                </Nav.Link>
+                                <LinkContainer to="/login">
+                                    <Nav.Link>
+                                        <i className="fas fa-user"></i> Sign In
+                                    </Nav.Link>
+                                </LinkContainer>
                             )}
                             {userInfo && userInfo.isAdmin && (
                                 <NavDropdown title="Admin" id="admin-menu">
