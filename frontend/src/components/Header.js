@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -33,25 +34,42 @@ const Header = () => {
                                     title={userInfo.name}
                                     id="username"
                                 >
-                                    <Nav.Link
-                                        onClick={() => navigate("/profile")}
-                                    >
+                                    <LinkContainer to="/profile">
                                         <NavDropdown.Item>
                                             Profile
                                         </NavDropdown.Item>
-                                    </Nav.Link>
-                                    <Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer>
                                         <NavDropdown.Item
                                             onClick={logoutHandler}
                                         >
                                             Logout
                                         </NavDropdown.Item>
-                                    </Nav.Link>
+                                    </LinkContainer>
                                 </NavDropdown>
                             ) : (
                                 <Nav.Link onClick={() => navigate("/login")}>
                                     <i className="fas fa-user"></i> Sign In
                                 </Nav.Link>
+                            )}
+                            {userInfo && userInfo.isAdmin && (
+                                <NavDropdown title="Admin" id="admin-menu">
+                                    <LinkContainer to="/admin/userlist">
+                                        <NavDropdown.Item>
+                                            Users
+                                        </NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/admin/productlist">
+                                        <NavDropdown.Item>
+                                            Products
+                                        </NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to="/admin/orderlist">
+                                        <NavDropdown.Item>
+                                            Orders
+                                        </NavDropdown.Item>
+                                    </LinkContainer>
+                                </NavDropdown>
                             )}
                         </Nav>
                     </Navbar.Collapse>
