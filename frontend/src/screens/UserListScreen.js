@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Button, Form, Row, Col, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -77,7 +77,7 @@ const UserListScreen = () => {
                                 </td>
                                 <td>
                                     <LinkContainer
-                                        to={`/user/${user._id}/edit`}
+                                        to={`/admin/user/${user._id}/edit`}
                                     >
                                         <Button
                                             variant="light"
