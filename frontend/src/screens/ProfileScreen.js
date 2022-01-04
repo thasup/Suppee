@@ -198,6 +198,7 @@ const ProfileScreen = () => {
                                                 className="btn-sm"
                                                 variant="light"
                                             >
+                                                <i className="fas fa-info-circle"></i>{" "}
                                                 Details
                                             </Button>
                                         </LinkContainer>
