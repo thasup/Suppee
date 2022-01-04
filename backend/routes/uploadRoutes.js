@@ -1,12 +1,13 @@
 import path from "path";
 import express from "express";
 import multer from "multer";
+import { protect, admin } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        cb(null, "upload/");
+        cb(null, "uploads/");
     },
     filename(req, file, cb) {
         cb(
@@ -26,7 +27,7 @@ function checkFileType(file, cb) {
     if (extname && mimetype) {
         return cb(null, true);
     } else {
-        cb("Images only!");
+        cb({ message: "Unsupported file format" }), false;
     }
 }
 
@@ -37,8 +38,8 @@ const upload = multer({
     },
 });
 
-router.post("/", upload.single("image"), (req, res) => {
-    res.send(`/${req.file.path}`);
+router.post("/", protect, admin, upload.single("image"), (req, res) => {
+    res.send(`/${req.file.path.replace("\\", "/")}`);
 });
 
 export default router;
