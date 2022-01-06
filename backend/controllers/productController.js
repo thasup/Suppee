@@ -126,6 +126,35 @@ const createProductReview = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Delete a review
+// @route    DELETE /api/products/:id/reviews
+// @access    Private
+const deleteProductReview = asyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+        const reviews = product.reviews.filter(
+            (review) => review.user.toString() !== req.user._id.toString()
+        );
+
+        const rating =
+            product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+            product.reviews.length; //update the rating
+
+        const numReviews = product.reviews.length; //update num
+
+        await Product.findByIdAndUpdate(req.params.id, {
+            reviews,
+            rating,
+            numReviews,
+        });
+        res.status(201).json({ message: "Review Deleted" });
+    } else {
+        res.status(404);
+        throw new Error("Product not found");
+    }
+});
+
 export {
     getProducts,
     getProductById,
@@ -133,4 +162,5 @@ export {
     createProduct,
     updateProduct,
     createProductReview,
+    deleteProductReview,
 };

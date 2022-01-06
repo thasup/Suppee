@@ -16,8 +16,13 @@ import Message from "../components/Message";
 import {
     listProductDetails,
     createProductReview,
+    deleteProductReview,
 } from "../actions/productActions.js";
-import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import {
+    PRODUCT_CREATE_REVIEW_RESET,
+    PRODUCT_DELETE_REVIEW_RESET,
+} from "../constants/productConstants";
+import LoaderSmall from "../components/LoaderSmall";
 
 const ProductScreen = () => {
     const match = useParams();
@@ -40,15 +45,28 @@ const ProductScreen = () => {
     const { success: successProductReview, error: errorProductReview } =
         productReviewCreate;
 
+    const productReviewDelete = useSelector(
+        (state) => state.productReviewDelete
+    );
+    const {
+        loading: loadingDeleteProductReview,
+        success: successDeleteProductReview,
+        error: errorDeleteProductReview,
+    } = productReviewDelete;
+
     useEffect(() => {
         if (successProductReview) {
-            alert("Review Submitted!");
             setRating(0);
             setComment("");
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
+
+        if (successDeleteProductReview) {
+            dispatch({ type: PRODUCT_DELETE_REVIEW_RESET });
+        }
+
         dispatch(listProductDetails(match.id));
-    }, [dispatch, match, successProductReview]);
+    }, [dispatch, match, successDeleteProductReview, successProductReview]);
 
     const addToCartHandler = () => {
         navigate(`/cart/${match.id}?qty=${qty}`);
@@ -64,7 +82,13 @@ const ProductScreen = () => {
         );
     };
 
-    const deleteReviewHandler = () => {};
+    const deleteReviewHandler = (review) => {
+        if (userInfo && review.user === userInfo._id) {
+            dispatch(deleteProductReview(match.id));
+        } else {
+            alert("Not allow");
+        }
+    };
 
     return (
         <>
@@ -138,7 +162,7 @@ const ProductScreen = () => {
                                                 <Col>Qty</Col>
                                                 <Col>
                                                     <Form.Control
-                                                        className="selectForm"
+                                                        className="form-select"
                                                         as="select"
                                                         value={qty}
                                                         onChange={(e) =>
@@ -165,7 +189,7 @@ const ProductScreen = () => {
                                         </ListGroup.Item>
                                     )}
 
-                                    <ListGroup.Item className="d-grid gap-2">
+                                    <ListGroup.Item className="d-grid">
                                         <Button
                                             onClick={addToCartHandler}
                                             type="button"
@@ -180,8 +204,15 @@ const ProductScreen = () => {
                             </Card>
                         </Col>
                     </Row>
+
+                    {errorDeleteProductReview && (
+                        <Message variant="danger">
+                            {errorDeleteProductReview}
+                        </Message>
+                    )}
                     <Row className="mt-3">
                         <Col md={6}>
+                            {loadingDeleteProductReview && <LoaderSmall />}
                             <h2>Reviews</h2>
                             {product.reviews.length === 0 && (
                                 <Message variant="secondary">
@@ -203,21 +234,25 @@ const ProductScreen = () => {
                                                 </p>
                                                 <p>{review.comment}</p>
                                             </Col>
-                                            <Col className="col-1">
-                                                <i
-                                                    className="fas fa-trash btn-del"
-                                                    onClick={() =>
-                                                        deleteReviewHandler()
-                                                    }
-                                                ></i>
-                                            </Col>
+                                            {review.user === userInfo._id && (
+                                                <Col className="col-1 justify-content-end">
+                                                    <i
+                                                        className="fas fa-trash btn-del"
+                                                        onClick={() =>
+                                                            deleteReviewHandler(
+                                                                review
+                                                            )
+                                                        }
+                                                    ></i>
+                                                </Col>
+                                            )}
                                         </Row>
                                     </ListGroup.Item>
                                 ))}
                                 {!product.reviews.some(
                                     (review) => review.user === userInfo._id
                                 ) && (
-                                    <>
+                                    <ListGroup className="mt-3">
                                         <h2>Write a Review</h2>
                                         {errorProductReview && (
                                             <Message variant="danger">
@@ -237,6 +272,7 @@ const ProductScreen = () => {
                                                     </Form.Label>
                                                     <Form.Control
                                                         as="select"
+                                                        className="form-select"
                                                         value={rating}
                                                         onChange={(e) =>
                                                             setRating(
@@ -296,7 +332,7 @@ const ProductScreen = () => {
                                                 to write a review
                                             </Message>
                                         )}
-                                    </>
+                                    </ListGroup>
                                 )}
                             </ListGroup>
                         </Col>
