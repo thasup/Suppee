@@ -23,11 +23,11 @@ import {
 
 // create Action Creator for all products
 export const listProducts =
-    (keyword = "") =>
+    (keyword = "", pageNumber = "") =>
     async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `/api/products?keyword=${keyword}`
+                `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
             );
 
             dispatch({

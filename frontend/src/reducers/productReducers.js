@@ -28,7 +28,11 @@ import {
 export const productListReducers = (state = { products: [] }, action) => {
     switch (action.type) {
         case PRODUCT_LIST_SUCCESS:
-            return { products: action.payload };
+            return {
+                products: action.payload.products,
+                page: action.payload.page,
+                pages: action.payload.pages,
+            };
         case PRODUCT_LIST_FAIL:
             return { error: action.payload };
         default:
