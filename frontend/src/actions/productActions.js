@@ -22,24 +22,28 @@ import {
 } from "../constants/productConstants.js";
 
 // create Action Creator for all products
-export const listProducts = () => async (dispatch) => {
-    try {
-        const { data } = await axios.get("/api/products");
+export const listProducts =
+    (keyword = "") =>
+    async (dispatch) => {
+        try {
+            const { data } = await axios.get(
+                `/api/products?keyword=${keyword}`
+            );
 
-        dispatch({
-            type: PRODUCT_LIST_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: PRODUCT_LIST_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        });
-    }
-};
+            dispatch({
+                type: PRODUCT_LIST_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: PRODUCT_LIST_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            });
+        }
+    };
 
 // create Action Creator for a product detail
 export const listProductDetails = (id) => async (dispatch) => {

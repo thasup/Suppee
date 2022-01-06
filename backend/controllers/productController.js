@@ -5,9 +5,34 @@ import Product from "../models/productModel.js";
 // @route    GET /api/products
 // @access    Public
 const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    // res.status(401);
-    // throw new Error("Not Authorized.");
+    const keyword = req.query.keyword
+        ? {
+              $or: [
+                  {
+                      name: {
+                          $regex: req.query.keyword,
+                          $options: "i",
+                      },
+                  },
+
+                  {
+                      brand: {
+                          $regex: req.query.keyword,
+                          $options: "i",
+                      },
+                  },
+
+                  {
+                      category: {
+                          $regex: req.query.keyword,
+                          $options: "i",
+                      },
+                  },
+              ],
+          }
+        : {};
+
+    const products = await Product.find({ ...keyword });
     res.json(products);
 });
 
