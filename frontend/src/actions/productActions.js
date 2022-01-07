@@ -19,6 +19,9 @@ import {
     PRODUCT_DELETE_REVIEW_REQUEST,
     PRODUCT_DELETE_REVIEW_SUCCESS,
     PRODUCT_DELETE_REVIEW_FAIL,
+    PRODUCT_TOP_REQUEST,
+    PRODUCT_TOP_FAIL,
+    PRODUCT_TOP_SUCCESS,
 } from "../constants/productConstants.js";
 
 // create Action Creator for all products
@@ -243,3 +246,26 @@ export const deleteProductReview =
             });
         }
     };
+
+export const listTopProducts = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: PRODUCT_TOP_REQUEST,
+        });
+
+        const { data } = await axios.get(`/api/products/top`);
+
+        dispatch({
+            type: PRODUCT_TOP_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_TOP_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
