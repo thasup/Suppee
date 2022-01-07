@@ -1,5 +1,6 @@
 <!-- Add banner here -->
-<!-- ![Project Preview](docs/435423.gif) -->
+
+![Project Preview](docs/Screenshot.png)
 
 # Suppee
 
@@ -22,7 +23,7 @@ Suppee is e-commerce platform built with the MERN stack & Redux
 
 [(Back to top)](#table-of-contents)
 
-[Suppee Link](https://thasup-travel-app.herokuapp.com/)
+[Suppee Link](https://thasup-suppee.herokuapp.com/)
 
 # Features
 
