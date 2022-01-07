@@ -23,6 +23,7 @@ import {
     PRODUCT_DELETE_REVIEW_RESET,
 } from "../constants/productConstants";
 import LoaderSmall from "../components/LoaderSmall";
+import Meta from "../components/Meta";
 
 const ProductScreen = () => {
     const match = useParams();
@@ -92,7 +93,7 @@ const ProductScreen = () => {
 
     return (
         <>
-            <Link className="btn btn-light my-3" to="/">
+            <Link className="btn btn-outline-primary my-3" to="/">
                 Go Back
             </Link>
             {!product._id || product._id !== match.id ? (
@@ -101,6 +102,7 @@ const ProductScreen = () => {
                 <Message variant="danger">{error}</Message>
             ) : (
                 <>
+                    <Meta title={product.name} />
                     <Row>
                         <Col md={6}>
                             <Image
