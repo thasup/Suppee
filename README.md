@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+<!-- Add banner here -->
+<!-- ![Project Preview](docs/435423.gif) -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Suppee
 
-## Available Scripts
+<!-- Describe your project in brief -->
 
-In the project directory, you can run:
+Suppee is e-commerce platform built with the MERN stack & Redux
 
-### `npm start`
+# Table of contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+-   [Suppee](#suppee)
+-   [Table of contents](#table-of-contents)
+-   [Demo](#demo)
+-   [Features](#features)
+-   [Install](#install)
+-   [Setup ENV](#setup-env)
+-   [Highlight Dependencies](#highlight-dependencies)
+-   [Highlight Technology](#highlight-technology)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Demo
 
-### `npm test`
+[(Back to top)](#table-of-contents)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Suppee Link](https://thasup-travel-app.herokuapp.com/)
 
-### `npm run build`
+# Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[(Back to top)](#table-of-contents)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   Login with user authentication secured by JWT
+-   User profile edit page with order details
+-   Full-featured shopping cart
+-   Checkout process (login, shipping address, payment method, etc.)
+-   PayPal / credit card integration payment method
+-   Mark orders as delivered option
+-   Product reviews and ratings
+-   Admin user management
+-   Admin product management
+-   Admin order details page
+-   Product search feature
+-   Product pagination
+-   Top rated products carousel
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install
 
-### `npm run eject`
+[(Back to top)](#table-of-contents)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. clone this git on your computer
+2. install [node.js](https://nodejs.org/en/)
+3. run command `npm install` for install backend package.json
+4. run command `cd .\frontend\` and `npm install` for install frontend package.json too
+5. setup [.env file](#setup-env)
+6. run command `npm run dev` on terminal
+7. go to `http://localhost:3000/`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Setup ENV
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[(Back to top)](#table-of-contents)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**NODE_ENV** : development
 
-## Learn More
+**PORT** : 5000
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**MONGO_URI** : [MongoDB](https://www.mongodb.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**JWT_SECRET** : --whatever you want--
 
-### Code Splitting
+**PAYPAL_CLIENT_ID** : [Paypal](https://developer.paypal.com/home)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Highlight Dependencies
 
-### Analyzing the Bundle Size
+[(Back to top)](#table-of-contents)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   `node` version 16.13.1
+-   `express` version 4.17.2
+-   `mongoose` version 6.1.3
+-   `react` version 17.0.2
+-   `react-bootstrap` version 2.0.4
+-   `react-router-dom` version 6.2.1
+-   `redux` version 4.1.2
 
-### Making a Progressive Web App
+# Highlight Technology
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[(Back to top)](#table-of-contents)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   Node.js
+-   Express
+-   RESTful API
+-   JWT
+-   MongoDB
+-   Mongoose
+-   React
+-   React Router
+-   Redux
