@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -93,17 +93,6 @@ const RegisterScreen = () => {
                     Register
                 </Button>
             </Form>
-
-            <Row className="py-3">
-                <Col>
-                    Have an Account ?{" "}
-                    <Link
-                        to={redirect ? `/login?redirect=${redirect}` : "/login"}
-                    >
-                        Register
-                    </Link>
-                </Col>
-            </Row>
         </FormContainer>
     );
 };
