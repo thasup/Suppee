@@ -76,13 +76,35 @@ h2 {
     padding: 1rem 1rem;
 }
 
+.product-img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+}
+
+.cart-product-img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
 /* Desktop */
 @media only screen and (min-width: 768px) {
     .form-select {
-        padding: 1rem 0.5rem;
+        padding: 1rem 1.5rem;
     }
 
     .carousel-caption h2 {
         font-size: 1.5vw;
+    }
+
+    .product-img {
+        height: 250px;
+    }
+
+    .cart-product-img {
+        height: 100px;
     }
 }

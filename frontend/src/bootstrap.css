@@ -14,6 +14,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
 :root {
     --bs-main: #0078ff;
+    --bs-main-dark: #0052b1;
     --bs-blue: #2c3e50;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -5452,7 +5453,7 @@ fieldset:disabled .btn {
 .page-link:hover {
     z-index: 2;
     color: #fff;
-    background-color: #0f7864;
+    background-color: var(--bs-main-dark);
     border-color: transparent;
 }
 
@@ -5471,7 +5472,7 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #0f7864;
+    background-color: var(--bs-main-dark);
     border-color: transparent;
 }
 

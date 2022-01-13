@@ -162,7 +162,7 @@ const ProductEditScreen = () => {
                             ></Form.Control>
                         </Form.Group>
 
-                        <Form.Group controlId="category">
+                        <Form.Group controlId="category" className="my-3">
                             <Form.Label>Category</Form.Label>
                             <Form.Control
                                 type="text"
@@ -172,17 +172,18 @@ const ProductEditScreen = () => {
                             ></Form.Control>
                         </Form.Group>
 
-                        <Form.Group controlId="description">
+                        <Form.Group controlId="description" className="my-3">
                             <Form.Label>Description</Form.Label>
                             <Form.Control
-                                type="text"
+                                as="textarea"
+                                row="8"
                                 placeholder="Enter description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
 
-                        <Form.Group controlId="countInStock">
+                        <Form.Group controlId="countInStock" className="my-3">
                             <Form.Label>Count In Stock</Form.Label>
                             <Form.Control
                                 type="number"

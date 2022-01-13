@@ -56,6 +56,7 @@ const CartScreen = () => {
                                 <Row>
                                     <Col md={2}>
                                         <Image
+                                            className="cart-product-img"
                                             src={item.image}
                                             alt={item.name}
                                             fluid
