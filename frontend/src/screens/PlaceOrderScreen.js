@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
+import { CART_RESET_ITEM } from "../constants/cartConstants";
 
 const PlaceOrderScreen = () => {
     const dispatch = useDispatch();
@@ -14,10 +15,9 @@ const PlaceOrderScreen = () => {
     const cart = useSelector((state) => state.cart);
 
     // Calculate prices
-    const itemsPrice = cart.cartItems.reduce(
-        (acc, item) => acc + item.price * item.qty,
-        0
-    );
+    const itemsPrice = Number(
+        cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    ).toFixed(2);
     const shippingPrice = itemsPrice > 100 ? 0 : 10;
     const taxPrice = (0.15 * itemsPrice).toFixed(2);
     const totalPrice = (
@@ -31,9 +31,10 @@ const PlaceOrderScreen = () => {
 
     useEffect(() => {
         if (success) {
+            dispatch({ type: CART_RESET_ITEM });
             navigate(`/order/${order._id}`);
         }
-    }, [navigate, success, order]);
+    }, [navigate, success, order, dispatch]);
 
     const placeOrderHandler = () => {
         dispatch(
@@ -98,7 +99,10 @@ const PlaceOrderScreen = () => {
                                                 </Col>
                                                 <Col md={4}>
                                                     {item.qty} x ${item.price} =
-                                                    ${item.qty * item.price}
+                                                    $
+                                                    {(
+                                                        item.qty * item.price
+                                                    ).toFixed(2)}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>

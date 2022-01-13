@@ -23,7 +23,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Header />
-            <main className="pt-3">
+            <main className="pt-3 pb-5">
                 <Container>
                     <Routes>
                         <Route path="/order/:id" element={<OrderScreen />} />

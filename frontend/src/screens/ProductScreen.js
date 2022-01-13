@@ -93,7 +93,7 @@ const ProductScreen = () => {
 
     return (
         <>
-            <Link className="btn btn-outline-primary my-3" to="/">
+            <Link className="btn btn-outline-primary mb-3" to="/">
                 Go Back
             </Link>
             {!product._id || product._id !== match.id ? (
