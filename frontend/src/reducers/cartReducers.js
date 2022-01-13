@@ -53,8 +53,6 @@ export const cartReducer = (
             return {
                 ...state,
                 cartItems: [],
-                shippingAddress: {},
-                paymentMethod: "",
             };
         case CART_SAVE_SHIPPING_ADDRESS:
             return {
