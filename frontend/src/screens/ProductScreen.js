@@ -274,6 +274,7 @@ const ProductScreen = () => {
                                                     </Form.Label>
                                                     <Form.Control
                                                         as="select"
+                                                        id="form-select-rating"
                                                         className="form-select"
                                                         value={rating}
                                                         onChange={(e) =>

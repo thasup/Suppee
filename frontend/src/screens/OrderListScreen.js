@@ -93,11 +93,11 @@ const OrderListScreen = () => {
                                         ></i>
                                     )}
                                 </td>
-                                <td>
+                                <td className="d-flex justify-content-center">
                                     <LinkContainer to={`/order/${order._id}`}>
                                         <Button
-                                            variant="light"
-                                            className="btn-sm"
+                                            variant="dark"
+                                            className="btn-sm mx-1"
                                         >
                                             <i className="fas fa-info-circle"></i>{" "}
                                             Details
@@ -105,7 +105,7 @@ const OrderListScreen = () => {
                                     </LinkContainer>
                                     <Button
                                         variant="danger"
-                                        className="btn-sm"
+                                        className="btn-sm mx-1"
                                         onClick={() => deleteHandler(order._id)}
                                     >
                                         <i className="fas fa-trash"></i>

@@ -118,20 +118,20 @@ const ProductListScreen = () => {
                                     <td>${product.price}</td>
                                     <td>{product.category}</td>
                                     <td>{product.brand}</td>
-                                    <td>
+                                    <td className="d-flex justify-content-center">
                                         <LinkContainer
                                             to={`/admin/product/${product._id}/edit`}
                                         >
                                             <Button
-                                                variant="light"
-                                                className="btn-sm"
+                                                variant="dark"
+                                                className="btn-sm mx-1"
                                             >
                                                 <i className="fas fa-edit"></i>
                                             </Button>
                                         </LinkContainer>
                                         <Button
                                             variant="danger"
-                                            className="btn-sm"
+                                            className="btn-sm mx-1"
                                             onClick={() =>
                                                 deleteHandler(product._id)
                                             }
