@@ -13,7 +13,7 @@ const products = [
     },
     {
         name: "iPhone 11 Pro 256GB Memory",
-        image: "/images/phone.jpg",
+        image: "/images/iphone.jpg",
         description:
             "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
         brand: "Apple",
@@ -25,7 +25,7 @@ const products = [
     },
     {
         name: "Cannon EOS 80D DSLR Camera",
-        image: "/images/camera.jpg",
+        image: "/images/canon.jpg",
         description:
             "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
         brand: "Cannon",
@@ -49,7 +49,7 @@ const products = [
     },
     {
         name: "Logitech G-Series Gaming Mouse",
-        image: "/images/mouse.jpg",
+        image: "/images/logitech_mouse.jpg",
         description:
             "Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience",
         brand: "Logitech",
