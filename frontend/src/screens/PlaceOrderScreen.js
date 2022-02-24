@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
 import { CART_RESET_ITEM } from "../constants/cartConstants";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,9 @@ const PlaceOrderScreen = () => {
 
   useEffect(() => {
     if (success) {
-      dispatch({ type: CART_RESET_ITEM });
       navigate(`/order/${order._id}`);
+      dispatch({ type: CART_RESET_ITEM });
+      dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [navigate, success, order, dispatch]);
 

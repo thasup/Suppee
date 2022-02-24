@@ -1,110 +1,110 @@
 #root {
-    position: relative;
-    min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;
-    text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  text-align: center;
 }
 
 h3 {
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
 
 h1 {
-    font-size: 1.8rem;
-    padding: 1rem 0;
+  font-size: 1.8rem;
+  padding: 1rem 0;
 }
 
 h2 {
-    font-size: 1.4rem;
-    padding: 0.5rem 0;
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
 }
 
 .btn-del {
-    color: red;
+  color: black;
 }
 
 .btn-del:hover {
-    cursor: pointer;
-    color: rgb(167, 0, 0);
+  cursor: pointer;
+  color: rgb(19, 19, 19);
 }
 
 /* carousel */
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
-    display: flex;
+  display: flex;
 }
 
 .carousel-caption {
-    position: absolute;
-    top: 0;
+  position: absolute;
+  top: 0;
 }
 
 .carousel-caption h2 {
-    color: #fff;
-    font-size: 2.5vw;
+  color: #fff;
+  font-size: 2.5vw;
 }
 
 .carousel img {
-    height: 300px;
-    padding: 30px;
-    margin: 40px;
-    border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
+  height: 300px;
+  padding: 30px;
+  margin: 40px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .carousel a {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .form-select {
-    padding: 1rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .dropdown-toggle:hover .dropdown-menu {
-    display: block;
+  display: block;
 }
 
 #form-select-rating {
-    padding: 1rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .product-img {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: 300px;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
 }
 
 .cart-product-img {
-    display: block;
-    object-fit: cover;
-    width: 100%;
-    height: 200px;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
 }
 
 /* Desktop */
 @media only screen and (min-width: 768px) {
-    .form-select {
-        padding: 1rem 1.5rem;
-    }
+  .form-select {
+    padding: 1rem 1.5rem;
+  }
 
-    .carousel-caption h2 {
-        font-size: 1.5vw;
-    }
+  .carousel-caption h2 {
+    font-size: 1.5vw;
+  }
 
-    .product-img {
-        height: 250px;
-    }
+  .product-img {
+    height: 250px;
+  }
 
-    .cart-product-img {
-        height: 100px;
-    }
+  .cart-product-img {
+    height: 100px;
+  }
 }

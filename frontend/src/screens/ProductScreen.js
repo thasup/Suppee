@@ -204,10 +204,13 @@ const ProductScreen = () => {
                       </Col>
                       {review.user === userInfo?._id && (
                         <Col className="col-1 justify-content-end">
-                          <i
-                            className="fas fa-trash btn-del"
+                          <button
+                            type="button"
+                            class="btn-sm mx-1 btn btn-danger"
                             onClick={() => deleteReviewHandler(review)}
-                          ></i>
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
                         </Col>
                       )}
                     </Row>
