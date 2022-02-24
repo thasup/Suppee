@@ -33,7 +33,7 @@ const HomeScreen = () => {
           Go Back
         </Link>
       )}
-      <h1>Latest Products</h1>
+      <h1 className="mt-3">Latest Products</h1>
       {products?.length === 0 ? (
         <Loader />
       ) : error ? (

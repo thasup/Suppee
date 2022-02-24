@@ -229,7 +229,7 @@ const ProductScreen = () => {
                           </Message>
                         )}
                         <Form onSubmit={submitReviewHandler}>
-                          <Form.Group controlId="rating" className="my-3">
+                          <Form.Group className="my-3">
                             <Form.Label>Rating</Form.Label>
                             <Form.Control
                               as="select"
