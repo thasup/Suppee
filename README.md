@@ -5,8 +5,7 @@
 # Suppee
 
 <!-- Describe your project in brief -->
-
-Suppee is e-commerce platform built with the MERN stack & Redux
+Suppee is an e-commerce platform built with the **MERN** stack, creating extensive back-end with **Express**, managing global state with **Redux**, working with a **MongoDB** database and the **Mongoose** ODM, using **JWT** authentication and integrating the **PayPal API**.
 
 # Table of contents
 
