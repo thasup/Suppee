@@ -246,6 +246,7 @@ const ProductScreen = () => {
                               <option value="5">5 - Excellent</option>
                             </Form.Control>
                           </Form.Group>
+
                           <Form.Group controlId="comment" className="my-3">
                             <Form.Label>Comment</Form.Label>
                             <Form.Control
@@ -255,6 +256,7 @@ const ProductScreen = () => {
                               onChange={(e) => setComment(e.target.value)}
                             ></Form.Control>
                           </Form.Group>
+
                           <Button type="submit" variant="primary">
                             Submit
                           </Button>
