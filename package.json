@@ -31,7 +31,7 @@
         "colors": "^1.4.0",
         "concurrently": "^7.0.0",
         "dotenv": "^10.0.0",
-        "express": "^4.17.2",
+        "express": "^4.21.2",
         "express-async-handler": "^1.2.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.13.5",
