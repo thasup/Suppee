@@ -22,7 +22,7 @@ Suppee is an e-commerce platform built with the **MERN** stack, creating extensi
 
 [(Back to top)](#table-of-contents)
 
-[https://suppee.shop/](https://suppee.shop/)
+[https://suppee.shop/](https://thasup-suppee.onrender.com)
 
 # Features
 
